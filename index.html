@@ -1,102 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title and icon -->
     <title>Bookmark</title>
-    <link
-      rel="shortcut icon"
-      href="./images/bookmark.png"
-      type="image/x-icon"
-    />
-    <!-- google font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Caveat:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <!-- CSS LINKS -->
-    <!-- fontawsome 1 -->
+    <!-- ===== favicon ===== -->
+    <link rel="icon" href="./images/bookmark.png" />
+    <!-- ===== Font Awesome Icon Library ===== -->
     <link rel="stylesheet" href="./css/all.min.css" />
-    <!-- bootstrap 2 -->
+    <!-- ===== Bootstrap Framework ===== -->
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
-    <!-- style 3 -->
+    <!-- ===== Main Style sheet ===== -->
     <link rel="stylesheet" href="./css/style.css" />
-    <!-- mediaquery -->
-    <link rel="stylesheet" href="./css/mediaquery.css" />
   </head>
-
   <body>
-    <section class="py-5">
-      <h1 class="text-center mb-5">Bookmarker</h1>
-
-      <div class="container">
-        <div class="inputWrapper mb-5">
-          <h2 class="text-center mb-5">
+    <main class="interface py-5 position-relative">
+      <div
+        class="container d-flex flex-column justify-content-center align-items-center"
+      >
+        <h1 class="py-2 position-relative">Bookmarker</h1>
+        <div
+          class="bookmark-body w-100 p-3 py-4 mt-5 d-flex flex-column justify-content-center align-items-center gap-4"
+        >
+          <h2>
             <i class="fa-solid fa-bookmark"></i>
-            Bookmark Your Favorite Sites
+            Bookmark your favorite sites
             <i class="fa-solid fa-bookmark"></i>
           </h2>
-          <div class="form-group name-box mb-4">
-            <label for="siteName" class="mb-2"
-              ><i class="fa-solid fa-book-bookmark"></i> Site Name</label
-            >
-            <input
-              type="text"
-              class="form-control mb-1"
-              id="siteName"
-              oninput="validateName()"
-              placeholder="Write site name"
-              required
-            />
-            <div class="alert alert-danger p-2 d-none" id="wrong-name">
-              <small>Please name must start with ( A - Z )</small>
-            </div>
-          </div>
-          <div class="form-group url-box mb-4">
-            <label for="siteUrl" class="mb-2"
-              ><i class="fa-solid fa-link"></i> Site Url</label
-            >
-            <input
-              type="text"
-              class="form-control mb-1"
-              id="siteUrl"
-              oninput="validateUrl()"
-              placeholder="Enter site url"
-              required
-            />
-            <div class="alert alert-danger p-2 d-none" id="wrong-url">
-              <small>Please enter a valid url</small>
-            </div>
-          </div>
-          <button
-            onclick="addBook()"
-            id="submitBtn"
-            class="btn addBtn add d-block mx-auto py-2 px-4"
+          <div
+            class="websiten w-100 d-flex flex-column justify-content-center"
           >
-            Add Site
-          </button>
+            <label for="bookmarkName" class="pb-2 fw-semibold">
+              <i class="fa-solid fa-book-bookmark pe-2"></i>
+              Site Name</label
+            >
+            <input
+              type="text"
+              placeholder="Bookmark Name"
+              class="form-control"
+              id="bookmarkName"
+            />
+          </div>
+          <div class="site-url w-100 d-flex flex-column justify-content-center">
+            <label for="bookmarkURL" class="pb-2 fw-semibold">
+              <i class="fa-solid fa-link pe-2"></i>Site URL</label
+            >
+            <input
+              type="url"
+              placeholder="Website URL"
+              class="form-control"
+              id="bookmarkURL"
+            />
+          </div>
+          <button class="btn btn-submit px-5" id="submitBtn">Submit</button>
         </div>
-
-        <div class="tableWrapper">
-          <table class="table table-hover text-center">
-            <thead>
-              <th>Index</th>
-              <th>Site Name</th>
-              <th>View</th>
-              <th>Delet</th>
-            </thead>
-            <tbody id="tableBody"></tbody>
-          </table>
+        <table class="table mt-4 text-center bg-light">
+          <thead>
+            <th class="text-capitalize">index</th>
+            <th class="text-capitalize">Website Name</th>
+            <th class="text-capitalize">Visit</th>
+            <th class="text-capitalize">Delete</th>
+          </thead>
+          <tbody id="tableContent"></tbody>
+        </table>
+      </div>
+      <div
+        class="information position-absolute start-0 top-0 w-100 h-100 d-flex justify-content-center align-items-center d-none"
+      >
+        <div class="contnt bg-white p-4 rounded-2 shadow-lg">
+          <header
+            class="titl w-100 d-flex justify-content-between align-items-center mb-4"
+          >
+            <div class="circ d-flex">
+              <span class="rounded-circle me-2"></span>
+              <span class="rounded-circle me-2"></span>
+              <span class="rounded-circle me-2"></span>
+            </div>
+            <button class="btn border-0" id="closeBtn">
+              <i class="fa-solid fa-xmark close fs-3"></i>
+            </button>
+          </header>
+          <p class="m-0 pb-2">
+            Site Name or Url is not valid, Please follow the rules below :
+          </p>
+          <ol class="rul list-unstyled m-0">
+            <li>
+              <i class="fa-regular fa-circle-right p-2"></i>Site name must
+              contain at least 3 characters
+            </li>
+            <li>
+              <i class="fa-regular fa-circle-right p-2"></i>Site URL must be a
+              valid one
+            </li>
+          </ol>
         </div>
       </div>
-    </section>
-
-    <button onclick="test()" id="clickme" class="btn btn-danger">click</button>
-    <!-- JS LINKS -->
-    <!-- bootstrap js link -->
-    <script src="./js/bootstrap.bundle.min.js"></script>
-    <!-- mainn.js -->
-    <script src="./js/mainn.js"></script>
+    </main>
+    <script src="js/indexx.js"></script>
   </body>
 </html>
